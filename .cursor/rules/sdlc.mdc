@@ -1,0 +1,10 @@
+---
+description: This folder is the SDLC kit, not a product app
+alwaysApply: true
+---
+
+# SDLC kit
+
+This repository holds role packs and GitHub templates. Product work happens in `garageguru-api`, `garageguru-web`, or a Flutter app repo.
+
+Do not add API or web feature code here. Point developers to install a role with `scripts/install-role.sh`.

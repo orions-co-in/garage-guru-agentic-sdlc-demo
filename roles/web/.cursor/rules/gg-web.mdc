@@ -1,0 +1,13 @@
+---
+description: Web engineer — React repo only
+alwaysApply: true
+---
+
+# Web role
+
+You own the GarageGuru **React** repository.
+
+- Implement UI, state, and API client calls only.
+- Call the backend. Do not fork fee or status rules if the API returns them.
+- Do not change the API or Flutter repos.
+- Run tests and production build before opening a PR.

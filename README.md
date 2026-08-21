@@ -1,63 +1,60 @@
-# GarageGuru Agentic SDLC Demo
+# GarageGuru SDLC kit
 
-Local demo for the **GarageGuru — Agentic AI Enabled SDLC** team presentation.
+This repo is **not** where feature code lives. GarageGuru is **one Jira project, many GitHub repos**. Each developer works in their own codebase with their own Cursor role.
 
-It walks one realistic ticket from a messy request to a running change:
-
-> Customer should be able to cancel a GarageGuru service booking
-
-That maps to live Jira **[GG-2](https://anka.atlassian.net/browse/GG-2)** (epic [GG-1](https://anka.atlassian.net/browse/GG-1)), not a local markdown ticket.
-
-## What this demo shows
-
-| Slide theme | What to open |
-| --- | --- |
-| Messy incoming request | `docs/00-incoming/` |
-| Requirement agent | `docs/01-requirements/` |
-| Jira epic / story / tasks | https://anka.atlassian.net/browse/GG-2 |
-| Repo impact (Node, React, Flutter) | `docs/03-impact-analysis/` |
-| Implementation on a feature branch | `apps/api`, `apps/web` |
-| Quality gates | `.github/workflows/ci.yml` + `npm test` |
-| DoR / DoD / AI permission levels | `docs/governance/` |
-
-## Quick start
-
-```bash
-cd ~/Projects/garage-guru-agentic-sdlc-demo
-npm install
-npm run demo
+```
+Jira GG  →  backend repo PR
+         →  web repo PR
+         →  each Flutter app PR
 ```
 
-Then open:
+## Repos
 
-- Web app: http://localhost:5173
-- API health: http://localhost:8787/health
-- Talk track: [DEMO_SCRIPT.md](DEMO_SCRIPT.md)
+| Role | Repo | Jira for GG-2 |
+| --- | --- | --- |
+| SDLC / process | this repo | — |
+| Backend | https://github.com/orions-co-in/garageguru-api | [GG-3](https://anka.atlassian.net/browse/GG-3) |
+| Web | https://github.com/orions-co-in/garageguru-web | [GG-4](https://anka.atlassian.net/browse/GG-4) |
+| Flutter apps | existing app repos (`garage_guru_app`, customer, staff, …) | [GG-5](https://anka.atlassian.net/browse/GG-5) |
 
-## Demo bookings
+Story: https://anka.atlassian.net/browse/GG-2
 
-| Booking | Status | Slot | Expected cancel result |
-| --- | --- | --- | --- |
-| BK-1001 | Pending | tomorrow | Allowed, no fee |
-| BK-1002 | Confirmed | in 5 hours | Allowed, no fee |
-| BK-1003 | Confirmed | in 45 minutes | Allowed, 50% fee |
-| BK-1004 | Technician en route | now | Blocked |
-| BK-1005 | Completed | yesterday | Blocked |
+## What each developer does
 
-## Quality gates
+1. Clone **their** repo (API or web or one Flutter app).
+2. Open that folder in Cursor. Role rules are already in `.cursor/rules/` for API and web.
+3. For an existing Flutter/QA repo, install the role pack from this kit (see below).
+4. Pick the Jira task for their layer. Create `feature/GG-n-…` in **their** repo only.
+5. Open a PR. GitHub Actions in that repo run the PPT gates: **Jira key**, **Lint**, **Format**, **Unit tests**, **Build** (web), **Security check**.
+6. They do not put API + web + Flutter in one PR.
+
+Their AI (Cursor / Copilot) stays on their machine. The role rule tells it: this repo only, Jira key required, no production deploy.
+
+## Install a role onto an existing repo
+
+From this kit:
 
 ```bash
-npm test
-npm run lint
+./scripts/install-role.sh backend /path/to/garageguru-api
+./scripts/install-role.sh web /path/to/react-repo
+./scripts/install-role.sh flutter /path/to/garage_guru_app
+./scripts/install-role.sh qa /path/to/any-gg-repo
+./scripts/install-role.sh tech-lead /path/to/any-gg-repo
 ```
 
-CI is defined in `.github/workflows/ci.yml` (lint, unit tests, web build). `.github/workflows/jira-traceability.yml` fails any PR that is missing a `GG-n` key and comments the Jira URL.
+That copies Cursor rules, PR template, Jira-key workflow, and the matching quality pipeline.
 
-This demo does **not** deploy to GCP; staging/production remain a human gate.
+Optional Jira write-back (PR URL posted onto the ticket): set GitHub secrets `JIRA_EMAIL` and `JIRA_API_TOKEN` on each product repo.
 
-## Jira + GitHub
+`GG-` in commits and PRs autolinks to https://anka.atlassian.net/browse/GG-n.
 
-- Board: https://anka.atlassian.net/jira/software/projects/GG
-- Story: https://anka.atlassian.net/browse/GG-2
-- How they connect: `docs/06-integrations/jira-github.md`
-- Which real apps move: `docs/06-integrations/repo-inventory.md`
+## Run the GG-2 slice locally
+
+Two terminals:
+
+```bash
+cd ~/Projects/garageguru-api && npm start
+cd ~/Projects/garageguru-web && npm install && npm run dev
+```
+
+Web: http://localhost:5173 (proxies to the API on 8787).
