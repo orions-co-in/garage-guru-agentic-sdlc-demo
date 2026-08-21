@@ -1,0 +1,19 @@
+{
+  "name": "garage-guru-agentic-sdlc-demo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Local Agentic SDLC demo for GarageGuru: booking cancellation from requirement to running apps.",
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "demo": "bash scripts/start-demo.sh",
+    "start:api": "npm run start --workspace=@garageguru/api",
+    "start:web": "npm run dev --workspace=@garageguru/web",
+    "test": "npm test --workspaces --if-present && npm run test:policy",
+    "test:policy": "cd packages/booking_policy && dart pub get && dart test",
+    "lint": "npm run lint --workspaces --if-present",
+    "build": "npm run build --workspace=@garageguru/web"
+  }
+}

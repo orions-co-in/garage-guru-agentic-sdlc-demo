@@ -1,0 +1,29 @@
+name: ci.yml
+on:
+  push:
+  pull_request:
+
+jobs:
+  node-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test --workspaces --if-present
+      - run: npm run build
+
+  dart-policy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/booking_policy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get
+      - run: dart test
