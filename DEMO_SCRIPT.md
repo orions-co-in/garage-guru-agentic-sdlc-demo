@@ -95,7 +95,9 @@ npm test
 
 Say: no ticket moves to Done until ACs, automated checks, and QA evidence exist.
 
-Optional: open `.github/PULL_REQUEST_TEMPLATE.md` and `.github/workflows/ci.yml`. AI may open the PR. It does not merge itself or ship production.
+Then open the PR checks: https://github.com/orions-co-in/garage-guru-agentic-sdlc-demo/pull/1
+
+Show **Lint**, **Unit tests**, **Build**, **Security check**, and **require-gg-key**. Point at the bot comment that links GG-2. AI may open the PR. It does not merge itself or ship production.
 
 ## 10:30–12:00 — Governance and rollout (slides 12–14)
 

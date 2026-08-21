@@ -17,7 +17,7 @@ That maps to live Jira **[GG-2](https://anka.atlassian.net/browse/GG-2)** (epic 
 | Jira epic / story / tasks | https://anka.atlassian.net/browse/GG-2 |
 | Repo impact (Node, React, Flutter) | `docs/03-impact-analysis/` |
 | Implementation on a feature branch | `apps/api`, `apps/web` |
-| Quality gates | `.github/workflows/ci.yml` + `npm test` |
+| Quality gates | [PR checks](https://github.com/orions-co-in/garage-guru-agentic-sdlc-demo/pull/1) + `docs/06-integrations/github-actions.md` |
 | DoR / DoD / AI permission levels | `docs/governance/` |
 
 ## Quick start
@@ -51,9 +51,11 @@ npm test
 npm run lint
 ```
 
-CI is defined in `.github/workflows/ci.yml` (lint, unit tests, web build). `.github/workflows/jira-traceability.yml` fails any PR that is missing a `GG-n` key and comments the Jira URL.
+GitHub Actions (see `docs/06-integrations/github-actions.md`):
 
-This demo does **not** deploy to GCP; staging/production remain a human gate.
+- `jira-traceability.yml` — PR must include `GG-n`, then comments the Jira URL
+- `ci.yml` — lint, unit tests, web build, `npm audit`
+- `staging-gate.yml` — after merge to `main`, records a staging candidate (no GCP / production deploy)
 
 ## Jira + GitHub
 
