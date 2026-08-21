@@ -18,6 +18,8 @@ Use the PPT for the operating model. Use this repo for the live proof.
    - PPT
    - this repo in Cursor
    - browser at http://localhost:5173
+   - Jira story https://anka.atlassian.net/browse/GG-2
+   - GitHub repo https://github.com/orions-co-in/garage-guru-agentic-sdlc-demo
 
 ## 0:00–2:00 — Why this exists (slides 1–3)
 
