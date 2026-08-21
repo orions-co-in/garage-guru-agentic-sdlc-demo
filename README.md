@@ -25,7 +25,7 @@ Story: https://anka.atlassian.net/browse/GG-2
 2. Open that folder in Cursor. Role rules are already in `.cursor/rules/` for API and web.
 3. For an existing Flutter/QA repo, install the role pack from this kit (see below).
 4. Pick the Jira task for their layer. Create `feature/GG-n-…` in **their** repo only.
-5. Open a PR. GitHub Actions in that repo check lint/tests and the Jira key.
+5. Open a PR. GitHub Actions in that repo run the PPT gates: **Jira key**, **Lint**, **Format**, **Unit tests**, **Build** (web), **Security check**.
 6. They do not put API + web + Flutter in one PR.
 
 Their AI (Cursor / Copilot) stays on their machine. The role rule tells it: this repo only, Jira key required, no production deploy.
@@ -43,6 +43,10 @@ From this kit:
 ```
 
 That copies Cursor rules, PR template, Jira-key workflow, and the matching quality pipeline.
+
+Optional Jira write-back (PR URL posted onto the ticket): set GitHub secrets `JIRA_EMAIL` and `JIRA_API_TOKEN` on each product repo.
+
+`GG-` in commits and PRs autolinks to https://anka.atlassian.net/browse/GG-n.
 
 ## Run the GG-2 slice locally
 

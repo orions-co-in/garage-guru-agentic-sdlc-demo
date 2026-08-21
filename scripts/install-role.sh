@@ -27,9 +27,11 @@ chmod +x "$TARGET/.githooks/commit-msg"
 case "$ROLE" in
   backend)
     cp "$ROOT/templates/github/workflows/api-quality-gates.yml" "$TARGET/.github/workflows/ci.yml"
+    cp "$ROOT/templates/github/workflows/staging-gate.yml" "$TARGET/.github/workflows/staging-gate.yml"
     ;;
   web)
     cp "$ROOT/templates/github/workflows/web-quality-gates.yml" "$TARGET/.github/workflows/ci.yml"
+    cp "$ROOT/templates/github/workflows/staging-gate.yml" "$TARGET/.github/workflows/staging-gate.yml"
     ;;
   flutter)
     cp "$ROOT/templates/github/workflows/flutter-quality-gates.yml" "$TARGET/.github/workflows/ci.yml"
