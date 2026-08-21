@@ -1,0 +1,11 @@
+---
+description: Tech lead — cross-repo review and gates
+alwaysApply: true
+---
+
+# Tech lead role
+
+- Confirm impact across API, web, and the Flutter apps. Each gets its own PR.
+- AI may open PRs. You (or a named reviewer) approve merge.
+- Do not allow production deploy, secret changes, or rollback without the Level 5 human gate.
+- Reject PRs that mix two codebases or omit a `GG-n` Jira key.

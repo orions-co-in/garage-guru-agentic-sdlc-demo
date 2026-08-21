@@ -1,12 +1,13 @@
-# Which systems change for GG-2
+# Which repo changes for GG-2
 
-| System | Path / app | Change |
+Each row is a **separate GitHub repo** and a **separate PR**.
+
+| Role | Repo | Change |
 | --- | --- | --- |
-| Node API | `apps/api` | Cancel endpoint, fee, slot, notifications |
-| React web | `apps/web` | Job cards, fee warning, blocked states |
-| Flutter customer | `garage_guru_app`, `customer_app` | Same policy via `packages/booking_policy` |
-| Flutter staff / technician | `staff_app` | Status + notification only |
-| Other Flutter apps | retailer, distributor, QC, CEO | No cancel UI |
-| Shared rules | `packages/shared-contracts` | One cutoff / fee / status list |
+| Backend | `garageguru-api` | Cancel API, fee, slot, notifications |
+| Web | `garageguru-web` | Job cards, fee warning, blocked states |
+| Flutter customer | `garage_guru_app`, `customer_app` | Same policy; own PRs |
+| Flutter staff | `staff_app` | Status + notification |
+| Other Flutter | retailer, distributor, QC, CEO | Confirm no cancel UI |
 
-Do not commit production app zips (`google-services.json`).
+Shared Jira story: https://anka.atlassian.net/browse/GG-2

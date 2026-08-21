@@ -1,46 +1,56 @@
-# GarageGuru — Agentic SDLC
+# GarageGuru SDLC kit
 
-Operating model from the team PPT: **Requirement → Jira → GitHub → Actions → (later) GCP**.
-
-`apps/api` and `apps/web` are the development code for the first slice: **customer booking cancellation** ([GG-2](https://anka.atlassian.net/browse/GG-2)).
+This repo is **not** where feature code lives. GarageGuru is **one Jira project, many GitHub repos**. Each developer works in their own codebase with their own Cursor role.
 
 ```
-apps/api          Node API
-apps/web          React web
-packages/         Shared cancel policy (JSON + Dart for Flutter)
-.github/          PR template + quality gates + Jira key check
-sdlc/             Requirements, repo impact, DoR/DoD
+Jira GG  →  backend repo PR
+         →  web repo PR
+         →  each Flutter app PR
 ```
 
-## Run
+## Repos
+
+| Role | Repo | Jira for GG-2 |
+| --- | --- | --- |
+| SDLC / process | this repo | — |
+| Backend | https://github.com/orions-co-in/garageguru-api | [GG-3](https://anka.atlassian.net/browse/GG-3) |
+| Web | https://github.com/orions-co-in/garageguru-web | [GG-4](https://anka.atlassian.net/browse/GG-4) |
+| Flutter apps | existing app repos (`garage_guru_app`, customer, staff, …) | [GG-5](https://anka.atlassian.net/browse/GG-5) |
+
+Story: https://anka.atlassian.net/browse/GG-2
+
+## What each developer does
+
+1. Clone **their** repo (API or web or one Flutter app).
+2. Open that folder in Cursor. Role rules are already in `.cursor/rules/` for API and web.
+3. For an existing Flutter/QA repo, install the role pack from this kit (see below).
+4. Pick the Jira task for their layer. Create `feature/GG-n-…` in **their** repo only.
+5. Open a PR. GitHub Actions in that repo check lint/tests and the Jira key.
+6. They do not put API + web + Flutter in one PR.
+
+Their AI (Cursor / Copilot) stays on their machine. The role rule tells it: this repo only, Jira key required, no production deploy.
+
+## Install a role onto an existing repo
+
+From this kit:
 
 ```bash
-npm install
-npm run start
+./scripts/install-role.sh backend /path/to/garageguru-api
+./scripts/install-role.sh web /path/to/react-repo
+./scripts/install-role.sh flutter /path/to/garage_guru_app
+./scripts/install-role.sh qa /path/to/any-gg-repo
+./scripts/install-role.sh tech-lead /path/to/any-gg-repo
 ```
 
-- Web: http://localhost:5173
-- API: http://localhost:8787/health
+That copies Cursor rules, PR template, Jira-key workflow, and the matching quality pipeline.
 
-| Booking | Result |
-| --- | --- |
-| BK-1001 pending | Cancel, no fee |
-| BK-1002 confirmed, 5h | Cancel, no fee |
-| BK-1003 confirmed, 45m | 50% fee |
-| BK-1004 en route | Blocked |
-| BK-1005 completed | Blocked |
+## Run the GG-2 slice locally
 
-## SDLC links
+Two terminals:
 
-| Step | Where |
-| --- | --- |
-| Board | https://anka.atlassian.net/jira/software/projects/GG |
-| Story | https://anka.atlassian.net/browse/GG-2 |
-| PR | https://github.com/orions-co-in/garage-guru-agentic-sdlc-demo/pull/1 |
-| Requirements | `sdlc/requirements.md` |
-| Which apps change | `sdlc/repos.md` |
-| DoR / DoD / AI levels | `sdlc/governance.md` |
+```bash
+cd ~/Projects/garageguru-api && npm start
+cd ~/Projects/garageguru-web && npm install && npm run dev
+```
 
-Branch: `feature/GG-2-booking-cancellation`  
-PR title: `[GG-2] …`  
-CI: lint, tests, build, security, Jira key. No production deploy.
+Web: http://localhost:5173 (proxies to the API on 8787).

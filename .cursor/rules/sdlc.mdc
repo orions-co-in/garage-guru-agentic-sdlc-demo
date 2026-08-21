@@ -1,11 +1,10 @@
 ---
-description: GarageGuru SDLC — Jira GG and GitHub
+description: This folder is the SDLC kit, not a product app
 alwaysApply: true
 ---
 
-Work goes through Jira project GG and GitHub.
+# SDLC kit
 
-- Story: https://anka.atlassian.net/browse/GG-2
-- Branch / commit / PR must include the Jira key (`feature/GG-2-booking-cancellation`).
-- Read ACs from Jira. Use `sdlc/repos.md` for Node / React / Flutter impact.
-- Open a pull request. Do not push to main. Do not deploy production.
+This repository holds role packs and GitHub templates. Product work happens in `garageguru-api`, `garageguru-web`, or a Flutter app repo.
+
+Do not add API or web feature code here. Point developers to install a role with `scripts/install-role.sh`.

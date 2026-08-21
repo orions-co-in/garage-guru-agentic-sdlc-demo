@@ -1,0 +1,13 @@
+---
+description: Flutter engineer — this mobile app repo only
+alwaysApply: true
+---
+
+# Flutter role
+
+You own **this** GarageGuru Flutter app only (customer, staff, retailer, …).
+
+- Check `sdlc/repos.md` in the SDLC kit (or the Jira task) before coding: some apps only need a status/notification change.
+- Reuse the shared cancellation policy. Do not invent a different cutoff or fee.
+- Do not modify Node or React repos from this workspace.
+- Run `dart test` / `flutter test` before opening a PR in **this** app's GitHub repo.

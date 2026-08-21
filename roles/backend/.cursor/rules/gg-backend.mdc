@@ -1,0 +1,13 @@
+---
+description: Backend engineer — Node API repo only
+alwaysApply: true
+---
+
+# Backend role
+
+You own the GarageGuru **Node API** repository.
+
+- Implement API, policy, data, and auth only.
+- Do not change React or Flutter projects. Those are other repos and other PRs.
+- Keep business rules in the API contract, not copied into the UI.
+- Run tests before opening a PR.

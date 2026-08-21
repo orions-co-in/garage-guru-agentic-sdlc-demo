@@ -1,7 +1,7 @@
 # GG-2 — Customer booking cancellation
 
 **Jira:** https://anka.atlassian.net/browse/GG-2  
-**Policy file:** `packages/shared-contracts/cancellation-policy.json`
+**Repos:** API, web, and Flutter apps are **separate**. Each role opens its own PR.
 
 Incoming request was only: *Customer should be able to cancel a GarageGuru service booking.* Development starts after these answers:
 
