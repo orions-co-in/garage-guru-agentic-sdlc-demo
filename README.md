@@ -1,65 +1,46 @@
-# GarageGuru Agentic SDLC Demo
+# GarageGuru — Agentic SDLC
 
-Local demo for the **GarageGuru — Agentic AI Enabled SDLC** team presentation.
+Operating model from the team PPT: **Requirement → Jira → GitHub → Actions → (later) GCP**.
 
-It walks one realistic ticket from a messy request to a running change:
+`apps/api` and `apps/web` are the development code for the first slice: **customer booking cancellation** ([GG-2](https://anka.atlassian.net/browse/GG-2)).
 
-> Customer should be able to cancel a GarageGuru service booking
+```
+apps/api          Node API
+apps/web          React web
+packages/         Shared cancel policy (JSON + Dart for Flutter)
+.github/          PR template + quality gates + Jira key check
+sdlc/             Requirements, repo impact, DoR/DoD
+```
 
-That maps to live Jira **[GG-2](https://anka.atlassian.net/browse/GG-2)** (epic [GG-1](https://anka.atlassian.net/browse/GG-1)), not a local markdown ticket.
-
-## What this demo shows
-
-| Slide theme | What to open |
-| --- | --- |
-| Messy incoming request | `docs/00-incoming/` |
-| Requirement agent | `docs/01-requirements/` |
-| Jira epic / story / tasks | https://anka.atlassian.net/browse/GG-2 |
-| Repo impact (Node, React, Flutter) | `docs/03-impact-analysis/` |
-| Implementation on a feature branch | `apps/api`, `apps/web` |
-| Quality gates | [PR checks](https://github.com/orions-co-in/garage-guru-agentic-sdlc-demo/pull/1) + `docs/06-integrations/github-actions.md` |
-| DoR / DoD / AI permission levels | `docs/governance/` |
-
-## Quick start
+## Run
 
 ```bash
-cd ~/Projects/garage-guru-agentic-sdlc-demo
 npm install
-npm run demo
+npm run start
 ```
 
-Then open:
+- Web: http://localhost:5173
+- API: http://localhost:8787/health
 
-- Web app: http://localhost:5173
-- API health: http://localhost:8787/health
-- Talk track: [DEMO_SCRIPT.md](DEMO_SCRIPT.md)
+| Booking | Result |
+| --- | --- |
+| BK-1001 pending | Cancel, no fee |
+| BK-1002 confirmed, 5h | Cancel, no fee |
+| BK-1003 confirmed, 45m | 50% fee |
+| BK-1004 en route | Blocked |
+| BK-1005 completed | Blocked |
 
-## Demo bookings
+## SDLC links
 
-| Booking | Status | Slot | Expected cancel result |
-| --- | --- | --- | --- |
-| BK-1001 | Pending | tomorrow | Allowed, no fee |
-| BK-1002 | Confirmed | in 5 hours | Allowed, no fee |
-| BK-1003 | Confirmed | in 45 minutes | Allowed, 50% fee |
-| BK-1004 | Technician en route | now | Blocked |
-| BK-1005 | Completed | yesterday | Blocked |
+| Step | Where |
+| --- | --- |
+| Board | https://anka.atlassian.net/jira/software/projects/GG |
+| Story | https://anka.atlassian.net/browse/GG-2 |
+| PR | https://github.com/orions-co-in/garage-guru-agentic-sdlc-demo/pull/1 |
+| Requirements | `sdlc/requirements.md` |
+| Which apps change | `sdlc/repos.md` |
+| DoR / DoD / AI levels | `sdlc/governance.md` |
 
-## Quality gates
-
-```bash
-npm test
-npm run lint
-```
-
-GitHub Actions (see `docs/06-integrations/github-actions.md`):
-
-- `jira-traceability.yml` — PR must include `GG-n`, then comments the Jira URL
-- `ci.yml` — lint, unit tests, web build, `npm audit`
-- `staging-gate.yml` — after merge to `main`, records a staging candidate (no GCP / production deploy)
-
-## Jira + GitHub
-
-- Board: https://anka.atlassian.net/jira/software/projects/GG
-- Story: https://anka.atlassian.net/browse/GG-2
-- How they connect: `docs/06-integrations/jira-github.md`
-- Which real apps move: `docs/06-integrations/repo-inventory.md`
+Branch: `feature/GG-2-booking-cancellation`  
+PR title: `[GG-2] …`  
+CI: lint, tests, build, security, Jira key. No production deploy.

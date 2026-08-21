@@ -1,0 +1,11 @@
+---
+description: GarageGuru SDLC — Jira GG and GitHub
+alwaysApply: true
+---
+
+Work goes through Jira project GG and GitHub.
+
+- Story: https://anka.atlassian.net/browse/GG-2
+- Branch / commit / PR must include the Jira key (`feature/GG-2-booking-cancellation`).
+- Read ACs from Jira. Use `sdlc/repos.md` for Node / React / Flutter impact.
+- Open a pull request. Do not push to main. Do not deploy production.

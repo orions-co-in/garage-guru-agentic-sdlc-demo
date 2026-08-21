@@ -8,12 +8,8 @@ if [[ ! -d node_modules ]]; then
   npm install
 fi
 
-echo
-echo "GarageGuru Agentic SDLC demo"
-echo "  Web   http://localhost:5173"
-echo "  API   http://localhost:8787/health"
-echo "  Script: DEMO_SCRIPT.md"
-echo
+echo "Web  http://localhost:5173"
+echo "API  http://localhost:8787/health"
 
 cleanup() {
   if [[ -n "${API_PID:-}" ]]; then
